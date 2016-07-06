@@ -1,0 +1,26 @@
+extends ../layout.jade
+block content
+  
+    form.form(method='post' enctype="multipart/form-data" action='/')
+      
+      h1 ADD NEW USER
+      
+      fieldset
+      
+        label(for='name') First Name:
+        input(type='text' id='name' name='Name')
+        
+        label(for='surname') Last Name:
+        input(type='text' id='surname' name='Surname')
+        
+        label(for='position') Position:
+        input(type='text' id='position' name='Position')
+              
+      fieldset
+      
+        label Add Image:
+        input(type='file' name='Image')
+      
+      button.addNew(type='submit' name='submit' onclick='ifEmpty()') ADD
+      
+      

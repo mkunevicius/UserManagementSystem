@@ -1,0 +1,16 @@
+extends ./layout.jade
+block content
+
+    .container
+      for user in users
+        .photo(id='#{user.Id}')
+          a(href='/user/#{user.Id}')
+            img(src='#{user.Image}', alt='#{user.Name}')
+            .photo-overlay 
+              h3 #{user.Name} #{user.Surname}
+              p #{user.Position}
+      .photo
+        a.addNew(href='/users/new') Add New User
+          
+  
+  

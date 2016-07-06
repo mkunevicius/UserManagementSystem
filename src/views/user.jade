@@ -1,0 +1,28 @@
+extends ./layout.jade
+block content
+
+    .container.userProfile
+      .photo
+        img(src='#{user.Image}', alt='#{user.Name}')
+        
+      .container
+        .description
+          h2 #{user.Name} #{user.Surname}
+          p #{user.Position}
+          p Currently assigned to these groups: 
+          for group in groups
+            - if (user.Id == group.UserId)
+                .group #{group.Title}
+                  a.delete(href='/user/remove/#{user.Id}/#{group.GroupId}') Remove
+                  
+      .description    
+        form.form(method='post' enctype="multipart/form-data" action='/user/#{user.Id}')
+        
+          label Add to Groups:
+          select(name='GroupId')
+            for group in groups
+              option(value='#{group.GroupId}') #{group.Title}
+          
+          button.delete(type='submit' name='submit') Add to Group
+
+        a.deleteUser(href='/users/delete/#{user.Id}') Delete This User

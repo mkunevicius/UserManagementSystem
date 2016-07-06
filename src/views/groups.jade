@@ -1,0 +1,31 @@
+extends ./layout.jade
+block content
+
+  .container.groupList
+    for group in groups
+      .description
+        h3 #{group.Title}
+        .photo
+          img(src='#{group.Picture}')
+        a.delete(href='/groups/delete/#{group.Id}') Delete Group
+        p Members:
+  
+        for user in users
+          - if (user.GroupId == group.Id)
+              .userInfo
+                a(href='/user/#{user.Id}')
+                  img.smallImage(src='#{user.Image}')
+                //- a.users(href='/user/#{user.Id}') #{user.Name} #{user.Surname}
+
+    
+  form.form(method='post' enctype="multipart/form-data" action='/groups')
+    //- h1 CREATE NEW GROUP
+    label Create New Group:
+    input(type='text' name='Title' placeholder='Enter Group Title')
+    label Add Image:
+    input(type='file' name='Picture')
+    
+    button.addNew(type='submit' name='submit') Create New Group
+          
+  
+  
